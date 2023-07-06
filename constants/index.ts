@@ -1,0 +1,170 @@
+import { AmiiboDetailsArrayProps } from "@/types";
+
+ export const gameSeriesArray=[//the array that is showed when the games series text input is clicked
+  "Super Smash Bros.",
+  "Super Mario Bros.",
+  "Chibi-Robo!",
+  "Splatoon",
+  "Animal Crossing",
+  "8-bit Mario",
+  "Skylanders",
+  "Legend Of Zelda",
+  "Shovel Knight",
+  "Kirby",
+  "Pokemon",
+  "Monster Hunter",
+  "BoxBoy!",
+  "Pikmin",
+  "Fire Emblem",
+  "Metroid",
+  "Others",
+  "Mega Man",
+  "Diablo",
+  "Power Pros",
+  "Monster Hunter Rise",
+  "Super Nintendo World"
+ ]
+  
+  
+  
+  export const footerLinks = [
+    {
+      title: "About",
+      links: [
+        { title: "How it works", url: "/" },
+        { title: "Featured", url: "/" },
+        { title: "Partnership", url: "/" },
+        { title: "Bussiness Relation", url: "/" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { title: "Events", url: "/" },
+        { title: "Blog", url: "/" },
+        { title: "Podcast", url: "/" },
+        { title: "Invite a friend", url: "/" },
+      ],
+    },
+    {
+      title: "Socials",
+      links: [
+        { title: "Discord", url: "/" },
+        { title: "Instagram", url: "/" },
+        { title: "Twitter", url: "/" },
+        { title: "Facebook", url: "/" },
+      ],
+    },
+  ];
+
+  export const AmiiboDetailsData:AmiiboDetailsArrayProps[] = [//the data description that is shown in each charcter
+    { name: "Mario", des: "The iconic plumber and hero of the Mushroom Kingdom, Mario is known for his jumping ability and versatility. He embarks on various adventures to rescue Princess Peach from the villainous Bowser." },
+    { name: "Luigi", des: "Mario's younger brother, Luigi often joins his brother in his quests. Despite his timid nature, Luigi is a skilled jumper and has his own unique adventures in the haunted mansion and beyond." },
+    { name: "Donkey Kong", des: "The powerful and banana-loving gorilla, Donkey Kong is known for his incredible strength. He battles against various foes to protect his home, the DK Isles, and his precious banana hoard." },
+    { name: "Link", des: "The legendary hero of The Legend of Zelda series, Link wields the Master Sword and embarks on epic quests to rescue Princess Zelda and defeat the forces of evil, including the main antagonist, Ganondorf." },
+    { name: "Samus Aran", des: "The intergalactic bounty hunter and protagonist of the Metroid series, Samus Aran wears a powerful exoskeleton known as the Power Suit. She explores alien worlds and battles space pirates and dangerous creatures." },
+    { name: "Yoshi", des: "Mario's dinosaur companion, Yoshi is known for his long tongue and ability to swallow enemies. He assists Mario and his friends in various adventures and races through the colorful Yoshi's Island." },
+    { name: "Kirby", des: "The pink, round, and incredibly versatile character, Kirby has the ability to inhale enemies and copy their powers. With his cheerful demeanor, he embarks on journeys to save Dream Land from various threats." },
+    { name: "Fox McCloud", des: "The leader of the Star Fox team, Fox McCloud pilots his Arwing spaceship to defend the Lylat System from the evil Andross. He is known for his piloting skills and bravery in battle." },
+    { name: "Pikachu", des: "The iconic Electric-type Pokémon, Pikachu is known for its electrical attacks and lightning-fast speed. Pikachu is the mascot of the Pokémon franchise and often accompanies trainers on their journeys." },
+    { name: "Captain Falcon", des: "A renowned F-Zero racer and bounty hunter, Captain Falcon is known for his speed and powerful Falcon Punch attack. He fights against evil and participates in high-speed races." },
+    { name: "Ness", des: "The young protagonist from the EarthBound series, Ness possesses psychic powers and embarks on a journey to save the world from the alien invasion. He is joined by his friends in this quirky role-playing game." },
+    { name: "Jigglypuff", des: "The balloon-like Pokémon, Jigglypuff is known for its singing abilities and its signature move, Sing. Jigglypuff uses its enchanting voice to put opponents to sleep before delivering a devastating attack." },
+    { name: "Princess Rosalina", des: "Rosalina is a celestial being and the adoptive mother of the Lumas in the Super Mario series. She oversees the cosmos and aids Mario on his journeys to protect the galaxies." },
+    { name: "Ganondorf", des: "The primary antagonist of The Legend of Zelda series, Ganondorf is a powerful sorcerer and the embodiment of evil. He seeks to obtain the Triforce and conquer Hyrule." },
+    { name: "Bowser", des: "The main antagonist of the Mario series, Bowser is a large, fire-breathing turtle who constantly kidnaps Princess Peach. He has a vast army of minions and frequently clashes with Mario in various creative ways." },
+    { name: "King Dedede", des: "The self-proclaimed king of Dream Land, King Dedede is a penguin-like character who often antagonizes Kirby. Despite his mischievous nature, he occasionally aids Kirby in his battles against greater threats." },
+    { name: "Meta Knight", des: "A mysterious character from the Kirby series, Meta Knight is a skilled swordsman with his signature weapon, the Galaxia. He often serves as either a rival or an ally to Kirby." },
+    { name: "Marth", des: "The protagonist of the Fire Emblem series, Marth is a skilled swordsman and a prince from the kingdom of Altea. He fights against the forces of evil and strives for justice." },
+    { name: "Zelda", des: "The princess of Hyrule and a recurring character in The Legend of Zelda series, Zelda possesses magical abilities and often aids Link in his quests to save Hyrule from Ganondorf's clutches." },
+    { name: "Sheik", des: "Sheik is Zelda's alter ego and a mysterious ninja-like character. Sheik assists Link in his adventures and provides valuable information and abilities to aid him on his journey." },
+    { name: "Squirtle", des: "One of the original three starter Pokémon from the Kanto region, Squirtle is a Water-type Pokémon known for its water-based attacks and its ability to evolve into Wartortle and Blastoise." },
+    { name: "Ivysaur", des: "Another original starter Pokémon from the Kanto region, Ivysaur is a Grass/Poison-type Pokémon. It evolves from Bulbasaur and eventually evolves into the powerful Venusaur." },
+    { name: "Charizard", des: "The final evolution of the Fire-type starter Pokémon from the Kanto region, Charizard is a powerful and iconic Pokémon known for its fiery attacks and its ability to fly." },
+    { name: "Diddy Kong", des: "Donkey Kong's monkey sidekick, Diddy Kong is known for his agility and speed. He often assists Donkey Kong in his adventures and has his own spin-off games." },
+    { name: "Lucas", des: "Another protagonist from the EarthBound series, Lucas possesses psychic powers similar to Ness. He embarks on his own adventure to save the world from mysterious creatures and evil entities." },
+    { name: "Sonic", des: "The speedy blue hedgehog, Sonic is known for his incredible speed and ability to defeat enemies with his Spin Dash. He frequently battles against the evil Dr. Robotnik, also known as Dr. Eggman." },
+    { name: "King K. Rool", des: "The primary antagonist of the Donkey Kong series, King K. Rool is a crocodile-like character with a vast array of weapons and gadgets. He constantly tries to steal Donkey Kong's banana hoard." },
+    { name: "Snake", des: "A highly skilled and stealthy soldier, Snake is the protagonist of the Metal Gear series. He engages in covert operations and battles against various enemies and giant mechs." },
+    { name: "Ike", des: "A powerful swordsman from the Fire Emblem series, Ike is the protagonist of Fire Emblem: Path of Radiance and Fire Emblem: Radiant Dawn. He fights for his friends and the freedom of his kingdom." },
+    { name: "Pit", des: "The angelic hero of the Kid Icarus series, Pit wields the powerful bow named Palutena's Bow. He battles against the forces of darkness and the evil Medusa to protect humanity and the gods." },
+    { name: "Wario", des: "Mario's greedy and mischievous rival, Wario is known for his strength and his love for treasure. He embarks on his own adventures and has his own spin-off games, often involving treasure hunting." },
+    { name: "Olimar", des: "The main protagonist of the Pikmin series, Captain Olimar is an astronaut who crash-lands on an unknown planet. He enlists the help of the tiny plant-like creatures called Pikmin to collect ship parts and return home." },
+    { name: "R.O.B.", des: "Short for Robotic Operating Buddy, R.O.B. is a peripheral accessory for the Nintendo Entertainment System. In Super Smash Bros., R.O.B. uses various gadgets and projectiles to battle opponents." },
+    { name: "Toon Link", des: "Based on the cel-shaded version of Link from The Legend of Zelda: The Wind Waker, Toon Link is a more cartoonish version of the character. He embarks on his own adventures across different islands." },
+    { name: "Wolf", des: "A rival and occasional ally to Fox McCloud, Wolf O'Donnell leads his own team of mercenaries called Star Wolf. He is a skilled pilot and often clashes with Fox in aerial dogfights." },
+    { name: "Villager", des: "Based on the player character from the Animal Crossing series, the Villager is a customizable character who lives in a peaceful village. The Villager interacts with animal villagers and enjoys various activities." },
+    { name: "Mega Man", des: "The iconic blue robot hero, Mega Man fights against the evil Dr. Wily and his army of Robot Masters. Mega Man gains new abilities by defeating these bosses and uses them to save the world." },
+    { name: "Wii Fit Trainer", des: "Representing the Wii Fit series, the Wii Fit Trainer promotes fitness and wellness. The character performs various yoga and exercise moves as attacks and encourages a healthy lifestyle." },
+    { name: "Rosalina", des: "Rosalina is a celestial being, while the Lumas are her adorable star-shaped companions. Rosalina commands the Lumas in battle and uses their unique abilities to her advantage." },
+    { name: "Little Mac", des: "A young boxer from the Punch-Out!! series, Little Mac aims to become the champion of the boxing world. He has impressive speed and agility but lacks in reach and power." },
+    { name: "Greninja", des: "The final evolution of the Water-type starter Pokémon from the Kalos region, Greninja is a fast and agile Pokémon known for its ninja-like moves. It uses its speed and water-based attacks to overwhelm opponents." },
+    { name: "Palutena", des: "The goddess of light and ruler of Angel Land, Palutena is a powerful character with a wide range of magical abilities. She assists Pit in his battles against evil forces and the underworld army." },
+    { name: "Pac-Man", des: "The iconic video game character, Pac-Man is known for his insatiable appetite for pellets and fruits. In Super Smash Bros., Pac-Man utilizes various power-ups and classic moves from his arcade games." },
+    { name: "Robin", des: "The customizable protagonist of Fire Emblem: Awakening, Robin wields both a sword and powerful magic spells. Robin plays a crucial role in the game's story and fights alongside other characters." },
+    { name: "Shulk", des: "The protagonist of Xenoblade Chronicles, Shulk wields the Monado, a powerful sword with the ability to see into the future. He fights against the mechanical creatures known as the Mechon to protect his world." },
+    { name: "Bowser Jr.", des: "Bowser's mischievous son, Bowser Jr. is known for his clown car and his eagerness to impress his father. He often assists Bowser in his schemes to defeat Mario and the Mushroom Kingdom." },
+    { name: "Duck Hunt", des: "Based on the classic NES game, Duck Hunt features a duo of characters: the dog and the duck. They work together to hunt down ducks in a shooting gallery-style game." },
+    { name: "Ryu", des: "The main protagonist of the Street Fighter series, Ryu is a skilled martial artist who seeks to become a true warrior. Ryu uses a combination of punches, kicks, and special moves to defeat his opponents." },
+    { name: "Ken", des: "A fellow Street Fighter, Ken is Ryu's best friend and rival. Ken shares many moves and abilities with Ryu but has his own unique variations. He is known for his flashy fighting style." },
+    { name: "Cloud", des: "The protagonist of Final Fantasy VII, Cloud Strife is a skilled swordsman and former member of SOLDIER. He wields the Buster Sword and battles against the forces of Shinra and the villainous Sephiroth." },
+    { name: "Corrin", des: "The customizable protagonist from Fire Emblem Fates, Corrin possesses the power to transform into a dragon. Corrin faces a difficult choice between two warring kingdoms and plays a key role in the game's story." },
+    { name: "Bayonetta", des: "The powerful and stylish witch, Bayonetta, is the protagonist of her own action-packed game series. She uses a combination of firearms and magical attacks to battle angels and other supernatural creatures." },
+    { name: "Inkling", des: "Representing the Splatoon series, the Inkling is a humanoid character that can transform into a squid. In battle, the Inkling utilizes ink-based weapons and abilities to cover the arena and splat opponents." },
+    { name: "Ridley", des: "A fearsome space pirate and recurring antagonist in the Metroid series, Ridley is a large dragon-like creature. He is known for his brutal attacks and serves as a powerful adversary for Samus Aran." },
+    { name: "Simon", des: "One of the vampire hunters from the Castlevania series, Simon Belmont wields the iconic Vampire Killer whip. He ventures through Dracula's castle, battling against various monsters and creatures of darkness." },
+    { name: "Richter", des: "Another vampire hunter from the Castlevania series, Richter Belmont is a descendant of Simon Belmont. He shares many of Simon's abilities and fights against the forces of Dracula to save humanity." },
+    { name: "King K. Rool", des: "The primary antagonist of the Donkey Kong series, King K. Rool is a crocodile-like character with a vast array of weapons and gadgets. He constantly tries to steal Donkey Kong's banana hoard." },
+    { name: "Isabelle", des: "Representing the Animal Crossing series, Isabelle is the friendly and helpful assistant to the player character, often serving as the mayor's secretary. She assists the player in managing the town and its activities." },
+    { name: "Incineroar", des: "The final evolution of the Fire-type starter Pokémon from the Alola region, Incineroar is a powerful and flamboyant Pokémon known for its wrestling-inspired moves. It combines fire and fighting-type attacks to dominate its opponents." },
+    { name: "Piranha Plant", des: "A potted Piranha Plant from the Mario series, the Piranha Plant surprises opponents with its quick and biting attacks. It can also fire spiky balls and use its leaves as a propeller for recovery." },
+    { name: "Joker", des: "The protagonist of Persona 5, Joker is a phantom thief with the power of Persona. He fights against corrupt individuals in a stylized world known as the Metaverse." },
+    { name: "Hero", des: "A customizable character from the Dragon Quest series, the Hero represents the main protagonists from several Dragon Quest games. The Hero wields a variety of weapons and spells to defeat monsters and save the world." },
+    { name: "Banjo & Kazooie", des: "A bear and bird duo, Banjo and Kazooie embark on adventures together in their own series of games. Banjo wields Kazooie like a weapon and uses her abilities to navigate the world and defeat enemies." },
+    { name: "Terry", des: "The main character of the Fatal Fury series and a regular in the King of Fighters series, Terry Bogard is a skilled martial artist. He utilizes various special moves and techniques in his fights." },
+    { name: "Byleth", des: "The customizable protagonist from Fire Emblem: Three Houses, Byleth becomes a professor at the Officer's Academy and trains students in the art of combat. Byleth wields a sword and other weapons." },
+    { name: "Min Min", des: "Representing the ARMS game, Min Min is a fighter known for her extendable arms. She can deliver powerful punches and use different types of ARMS to keep opponents at a distance." },
+    { name: "Steve", des: "The player character from Minecraft, Steve is a versatile character who can mine resources, craft items, and build structures. He can also use his tools and weapons to battle opponents." },
+    { name: "Sephiroth", des: "The main antagonist of Final Fantasy VII, Sephiroth is a powerful and iconic villain. He wields a long katana and possesses various supernatural abilities, making him a formidable adversary." },
+    { name: "Pyra/Mythra", des: "Two characters in one, Pyra and Mythra are from Xenoblade Chronicles 2. Pyra wields a powerful sword, while Mythra excels in speed and agility. Players can switch between the two during battles." },
+    { name: "Kazuya", des: "A character from the Tekken series, Kazuya Mishima is a martial artist with a complex family history. He has a wide range of fighting techniques, including powerful punches and kicks." },
+    { name: "Peach", des: "Princess Peach is the beloved ruler of the Mushroom Kingdom and is often kidnapped by the villainous Bowser. She possesses a kind-hearted and gentle nature, and she uses her magical abilities and Toad followers to aid in her adventures." },
+
+  ];
+
+  export const yearsOfProduction = [//the year options
+    { title: "Year", value: "Year" },
+    { title: "2014", value: "2014" },
+    { title: "2015", value: "2015" },
+    { title: "2016", value: "2016" },
+    { title: "2017", value: "2017" },
+    { title: "2018", value: "2018" },
+    { title: "2019", value: "2019" },
+    { title: "2020", value: "2020" },
+    { title: "2021", value: "2021" },
+    { title: "2022", value: "2022" },
+    { title: "2023", value: "2023" },
+  ];
+  
+  export const types = [//the types options
+    {
+      title: "Types",
+      value: "",
+    },
+    {
+      title: "Figure",
+      value: "Figure",
+    },
+    {
+      title: "Card",
+      value: "Card",
+    },
+    {
+      title:"Yarn",
+      value:"Yarn"
+    },
+    {
+      title:"Band",
+      value:"Band"
+    },
+  ];
