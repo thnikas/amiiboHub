@@ -4,17 +4,36 @@ export interface amiiboProps {//the amiibo type
   amiiboSeries?: string;
   character?: string;
   gameSeries?: string;
+  games3DS?: AmiiboGame[];
+  gamesSwitch?: AmiiboGame[];
+  gamesSwitch2?: AmiiboGame[];
+  gamesWiiU?: AmiiboGame[];
+  head?: string;
+  imgwebp?: string;
   limit?: 10;
   name?: string;
   release?:Release;
+  tail?: string;
   type?:string;
   image:string;
 }
+
+export interface AmiiboUsage {
+  Usage: string;
+  write: boolean;
+}
+
+export interface AmiiboGame {
+  amiiboUsage?: AmiiboUsage[];
+  gameID: string[];
+  gameName: string;
+}
+
 type Release = {//the release data in different regions
-  au: string,
-  eu: string,
-  jp:string,
-  na:string
+  au: string | null,
+  eu: string | null,
+  jp:string | null,
+  na:string | null
 }
 export interface FilterProps {
   amiiboSeries?: string;
@@ -28,7 +47,7 @@ export interface FilterProps {
 }
 
 export interface HomeProps {
-  searchParams: FilterProps;
+  searchParams: Promise<FilterProps>;
 }
 
 export interface amiiboamiibodProps {
@@ -66,14 +85,19 @@ export interface CustomFilterProps {//custom filter is used in the year and the 
 }
 
 export interface ShowMoreProps {
-  array:any//change
+  array: { amiibo: arrayFilter[] };
 }
 export interface arrayFilter {
   amiiboSeries: string,
   character: string,
   gameSeries: string,
+  games3DS?: AmiiboGame[],
+  gamesSwitch?: AmiiboGame[],
+  gamesSwitch2?: AmiiboGame[],
+  gamesWiiU?: AmiiboGame[],
   head: string,
   image: string,
+  imgwebp?: string,
   name: string,
   release: {
     au: string,

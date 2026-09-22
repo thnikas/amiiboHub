@@ -1,4 +1,4 @@
-import { amiiboProps, FilterProps } from "@/types";
+import { FilterProps } from "@/types";
 
 
 
@@ -29,26 +29,32 @@ export const deleteSearchParams = (type: string) => {
 };
 
 export async function fetchAmiibos(filters: FilterProps) {
-  const {  amiiboSeries,
-    character,
-    gameSeries,
-    limit,
-    name,
-    release,
-    type,
-    image,} = filters;
-    
-  const headers: HeadersInit = {
-    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
-    "X-RapidAPI-Host": "n3evin-amiiboapi-v1.p.rapidapi.com",
-  };
+  const { gameSeries, name, type } = filters;
+
+  const searchParams = new URLSearchParams();
+
+  if (gameSeries) searchParams.set("amiiboSeries", gameSeries);
+  if (name) searchParams.set("name", name);
+  if (type) searchParams.set("type", type);
+
+  const filtersQuery = searchParams.toString();
+  const query = `${filtersQuery}${filtersQuery ? "&" : ""}showusage`;
+
   const response = await fetch(
-    `https://n3evin-amiiboapi-v1.p.rapidapi.com/amiibo/?amiiboSeries=${gameSeries}&name=${name}&type=${type}`,
-    {
-      headers: headers,
-    }
+    `https://www.amiiboapi.org/api/amiibo/?${query}`,
+    { next: { revalidate: 3600 } }
   );
-  const result = await response.json();//get the data from the api
-  return result;
+
+  if (!response.ok) {
+    throw new Error(`AmiiboAPI request failed with status ${response.status}`);
+  }
+
+  const contentType = response.headers.get("content-type");
+
+  if (!contentType?.includes("application/json")) {
+    throw new Error("AmiiboAPI returned an unexpected response format");
+  }
+
+  return response.json();//get the data from the api
 }
 
