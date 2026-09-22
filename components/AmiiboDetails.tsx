@@ -1,145 +1,224 @@
-"use client"
+"use client";
 import { Fragment, useState } from "react";
 import Image from "next/image";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { amiiboProps,AmiiboDetailsArrayProps } from "@/types";
-import  CustomButton  from "./CustomButton";
-import ReactCardFlip  from "react-card-flip";
-import  {AmiiboDetailsData}  from "@/constants";
+import { amiiboProps } from "@/types";
+import CustomButton from "./CustomButton";
+import { AmiiboDetailsData } from "@/constants";
+
 interface amiiboDetailsProps {
   isOpen: boolean;
   closeModal: () => void;
   amiibo: amiiboProps;
-  
 }
 
+const AmiiboDetails = ({ isOpen, closeModal, amiibo }: amiiboDetailsProps) => {
+  const [hover, setHover] = useState(false);
 
-const amiiboDetails = ({ isOpen, closeModal, amiibo }: amiiboDetailsProps) => {
-  const [hover, setHover]=useState(false)
-  const dateParts = amiibo.release?.au?.split("-")//change the form of the date 
-  ?? amiibo.release?.eu?.split("-")
-  ?? amiibo.release?.jp?.split("-")
-  ?? amiibo.release?.na?.split("-")
-  ?? null;const convertedDate = dateParts?`${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`:null;
-  function searchOnAmazon() {//on button click go to amazon and search the specific item
-    const title = amiibo.name+" "+'Amiibo'; // Replace with your specific title
-  
-    // Encode the title to be included in the URL
+  const formatDate = (date?: string | null) => {
+    if (!date) return "Not announced";
+
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+  };
+
+  const description = AmiiboDetailsData.find(
+    (item) => item.name === amiibo.name,
+  );
+  const platformGroups = [
+    { name: "Nintendo Switch 2", games: amiibo.gamesSwitch2 ?? [] },
+    { name: "Nintendo Switch", games: amiibo.gamesSwitch ?? [] },
+    { name: "Nintendo 3DS", games: amiibo.games3DS ?? [] },
+    { name: "Wii U", games: amiibo.gamesWiiU ?? [] },
+  ].filter((platform) => platform.games.length > 0);
+
+  function searchOnAmazon() {
+    const title = `${amiibo.name} Amiibo`;
     const encodedTitle = encodeURIComponent(title);
-  
-    // Redirect to the Amazon search page with the encoded title
     window.open(`https://www.amazon.com/s?k=${encodedTitle}`, "_blank");
   }
-  const testF=()=>{
-    setHover(!hover)
-  }
-  return( <>
+
+  const toggleButton = () => {
+    setHover(!hover);
+  };
+
+  return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as='div' className='relative z-10' onClose={closeModal}>
-        <Transition.Child //animation when card details is showed
+      <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Transition.Child
           as={Fragment}
-          enter='ease-out duration-300'
-          enterFrom='opacity-0'
-          enterTo='opacity-100'
-          leave='ease-in duration-200'
-          leaveFrom='opacity-100'
-          leaveTo='opacity-0'
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
         >
-          <div className='fixed inset-0 bg-black bg-opacity-25' />
+          <div className="fixed inset-0 bg-black/35" />
         </Transition.Child>
 
-        <div className='fixed inset-0 overflow-y-auto'>
-          <div className='flex min-h-full items-center justify-center p-4 text-center'>
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
-              enter='ease-out duration-300'
-              enterFrom='opacity-0 scale-95'
-              enterTo='opacity-100 scale-100'
-              leave='ease-out duration-300'
-              leaveFrom='opacity-100 scale-100'
-              leaveTo='opacity-0 scale-95'
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-out duration-300"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className='relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
+              <Dialog.Panel className="relative max-h-[90vh] w-full max-w-4xl transform overflow-y-auto rounded-2xl bg-white text-left shadow-xl transition-all">
                 <button
-                  type='button'
-                  className='absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full'
+                  type="button"
+                  className="absolute right-2 top-2 z-10 w-fit rounded-full bg-primary-blue-100 p-2"
                   onClick={closeModal}
+                  aria-label="Close details"
                 >
                   <Image
-                    src='/close.svg'
-                    alt='close'
+                    src="/close.svg"
+                    alt="close"
                     width={20}
                     height={20}
-                    className='object-contain'
+                    className="object-contain"
                   />
                 </button>
 
-               <div className='flex-1 flex flex-col gap-1 '>
-                  <div className='relative w-full  bg-center rounded-lg custom-height'>
-                    <Image src={amiibo.image} alt='amiibo model' fill priority className='object-contain custom-height' />
-                  </div>
-                </div> 
+                <div className="m-6 flex flex-col gap-6 sm:m-8 md:m-10 ">
+                  <div className="grid items-center gap-6 md:grid-cols-[minmax(240px,0.8fr)_minmax(0,1.2fr)]">
+                    <div className="relative min-h-[280px] w-full rounded-xl md:min-h-[420px]">
+                      <Image
+                        src={amiibo.imgwebp ?? amiibo.image}
+                        alt={`${amiibo.name ?? "Amiibo"} model`}
+                        fill
+                        priority
+                        sizes="(max-width: 768px) 100vw, 360px"
+                        className="object-contain p-6"
+                      />
+                    </div>
 
-                <div className='flex-1 flex flex-col gap-3 card-contain'>
-                  <div className="amiibod-items">
-                    <h1 className='font-semibold text-xl capitalize '>Name:</h1> 
-                    <h2 className='font-normal text-xl capitalize space-y-2'>{amiibo.name}</h2>
-                  </div>
-
-                  <div className="amiibod-items">
-                    <h1 className='font-semibold text-xl capitalize '>Game Series:</h1> 
-                    <h2 className='font-normal text-xl capitalize space-y-2'>{amiibo.gameSeries}</h2>
-                  </div>
-
-                    
-                  <div className="amiibod-items">
-                    <h1 className='font-semibold text-xl capitalize '>Release:</h1> 
-                    <h2 className='font-normal text-xl capitalize space-y-2'>{convertedDate}</h2>
-                  </div>
-                  
-                  
-                 {AmiiboDetailsData.map((item,index) => {
-               
-                    return (item.name===amiibo.name?  
-                      // JSX elements for each item
-                      <div className="amiibod-items-des" key={index}>
-                        <h1 className='font-semibold text-xl capitalize self-center pb-2'>Description</h1>                  
-                        <h2 key={index} className='amiibo-amiibod__icon-text'>{item.des}</h2>
+                    <div className="flex flex-col gap-5">
+                      <div>
+                        <Dialog.Title className="text-3xl font-bold">
+                          {amiibo.name}
+                        </Dialog.Title>
+                        <p className="mt-3 text-sm leading-6 text-gray-600">
+                          {description?.des ??
+                            "No character description is available."}
+                        </p>
                       </div>
-                      :null
-                    );
-                  })}               
-                </div>
-                
-                
-                <ReactCardFlip isFlipped={hover} //custom button that flips when mouse is entered
-                  flipDirection="vertical">
-                  <CustomButton
-                    title='Buy now'
-                    containerStyles='w-full py-[16px] rounded-full bg-orange-500'
-                    textStyles='text-white text-[14px] leading-[17px] font-bold'
-                    rightIcon='/right-arrow.svg'
-                    handleMouseIn={testF}
 
-                  />
-                  <CustomButton
-                    title='Go to Amazon'
-                    containerStyles='w-full py-[16px] rounded-full bg-gray-800'
-                    textStyles='text-white text-[14px] leading-[17px] font-bold'
-                    handleClick={searchOnAmazon}
-                    rightIcon='/amazon2.svg'
-                    handleMouseOut={testF}
-                  />
-                </ReactCardFlip>
+                    <div className="card-contain">
+                        <h3 className="mb-4 text-lg font-semibold">
+                          Amiibo information
+                        </h3>
+                        <dl className="grid grid-cols-1 gap-x-5 gap-y-4 sm:grid-cols-2">
+                          <div className="rounded-lg p-3">
+                            <dt className="text-sm font-semibold">Character</dt>
+                            <dd className="text-sm">
+                              {amiibo.character ?? "Unknown"}
+                            </dd>
+                          </div>
+                          <div className="rounded-lg p-3">
+                            <dt className="text-sm font-semibold">Type</dt>
+                            <dd className="text-sm">
+                              {amiibo.type ?? "Unknown"}
+                            </dd>
+                          </div>
+                          <div className="rounded-lg p-3">
+                            <dt className="text-sm font-semibold">
+                              Game series
+                            </dt>
+                            <dd className="text-sm">
+                              {amiibo.gameSeries ?? "Unknown"}
+                            </dd>
+                          </div>
+                          <div className="rounded-lg p-3">
+                            <dt className="text-sm font-semibold">
+                              Amiibo series
+                            </dt>
+                            <dd className="text-sm">
+                              {amiibo.amiiboSeries ?? "Unknown"}
+                            </dd>
+                          </div>
+                          <div className="rounded-lg p-3 sm:col-span-2">
+                            <dt className="text-sm font-semibold">
+                              European release date
+                            </dt>
+                            <dd className="text-sm">
+                              {formatDate(amiibo.release?.eu)}
+                            </dd>
+                          </div>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+
+                <section className="card-contain">
+                    <h3 className="mb-3 text-xl font-semibold">
+                      Compatible games
+                    </h3>
+                    {platformGroups.length > 0 ? (
+                      <div className="flex flex-col gap-5">
+                        {platformGroups.map((platform) => (
+                          <div key={platform.name}>
+                            <h4 className="mb-2 font-bold">{platform.name}</h4>
+                            <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                              {platform.games.map((game, gameIndex) => (
+                                <li
+                                  key={`${platform.name}-${game.gameName}-${gameIndex}`}
+                                  className="rounded-lg p-4"
+                                >
+                                  <p className="font-semibold">
+                                    {game.gameName}
+                                  </p>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm">
+                        No compatible games are listed for this Amiibo.
+                      </p>
+                    )}
+                  </section>
+
+                  <div
+                    className={`card-flip ${hover ? "card-flip--flipped" : ""}`}
+                  >
+                    <div className="card-flip__inner">
+                      <div className="card-flip__face">
+                        <CustomButton
+                          title="Buy now"
+                          containerStyles="w-full py-[16px] rounded-2xl bg-orange-500"
+                          textStyles="text-white text-[14px] leading-[17px] font-bold"
+                          rightIcon="/right-arrow.svg"
+                          handleMouseIn={toggleButton}
+                        />
+                      </div>
+                      <div className="card-flip__face card-flip__back">
+                        <CustomButton
+                          title="Go to Amazon"
+                          containerStyles="w-full py-[16px] rounded-2xl bg-gray-800"
+                          textStyles="text-white text-[14px] leading-[17px] font-bold"
+                          handleClick={searchOnAmazon}
+                          rightIcon="/amazon2.svg"
+                          handleMouseOut={toggleButton}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
         </div>
       </Dialog>
     </Transition>
-  </>)
- 
-}
+  );
+};
 
-export default amiiboDetails;
+export default AmiiboDetails;
