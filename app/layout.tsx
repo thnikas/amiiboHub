@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='relative'>
+      <body className={`${inter.className} relative`}>
         <AmiiboArray>
           <Navbar/>
           {children}

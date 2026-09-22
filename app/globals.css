@@ -1,14 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../tailwind.config.js";
+@import "tailwindcss";
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: "Manrope", sans-serif;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 /* START: General styles */
@@ -70,7 +75,7 @@
 }
 
 .home__filters {
-  @apply mt-12 w-full flex-between items-center flex-wrap gap-5;
+  @apply mt-12 w-full flex justify-between items-center flex-wrap gap-5;
 }
 
 .home__filter-container {
@@ -127,51 +132,52 @@
   @apply text-[14px] leading-[17px];
 }
 
-.amiibo-amiibod__btn-container {
-  @apply hidden group-hover:flex absolute bottom-0 w-full z-10;
-}
 /* END: amiibo amiibod styles */
 
 /* START: amiibo Details styles */
-.amiibo-details__dialog-panel {
-  @apply relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5;
+.card-contain {
+  background-color: #f5f8ff;
+  border: 1px solid #e2e9ff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(43, 89, 255, 0.08);
+  padding: 1.75rem;
 }
-
-.amiibo-details__close-btn {
-  @apply absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full;
+@media (min-width: 640px) {
+  .card-contain {
+    padding: 2rem;
+  }
 }
-
-.amiibo-details__main-image {
-  @apply relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg;
+.card-flip {
+  height: 49px;
+  perspective: 1000px;
 }
-.custom-height {
-  height: 200px;
+.card-flip__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
 }
-.amiibod-items{
-  display: inherit;
-  
-  gap: 10px;
+.card-flip--flipped .card-flip__inner {
+  transform: rotateX(180deg);
 }
-.amiibod-items-des{
-  flex-direction: column;
-  display: flex;
-  border-radius: 20px;
-  padding: 10px;
+.card-flip__face {
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
 }
-.card-contain{
-  background-color: #F5F8FF;
-  border-radius: 10px;
-  padding: 5px;
+.card-flip__back {
+  transform: rotateX(180deg);
 }
 /* END: amiibo Details styles */
 
 /* START: Custom Filter styles */
 .custom-filter__btn {
-  @apply relative w-full min-w-[127px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
+  @apply relative w-full min-w-[127px] flex justify-between items-center cursor-pointer rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
 }
 
 .custom-filter__options {
-  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm;
 }
 /* END: Custom Filter styles */
 
@@ -211,42 +217,37 @@
 }
 
 .searchbar__item {
-  @apply flex-1 max-sm:w-full flex justify-start items-center relative;
+  @apply flex-1 max-sm:w-full flex justify-start items-center relative rounded-none;
 }
 
 .searchbar__input {
-  @apply w-full h-[48px] pl-16 p-4 rounded-l-full max-sm:rounded-full bg-light-white outline-none cursor-pointer text-base ;
+  @apply w-full h-[48px] pl-16 p-4 rounded-xl bg-light-white outline-none cursor-text text-base;
 }
 /* END: searchbar styles */
 
 /* START: search manufacturer styles */
 .search-manufacturer {
-  
   @apply flex-1 max-sm:w-full flex justify-start items-center;
 }
 
 .search-manufacturer__input {
- 
-  @apply w-full h-[48px] pl-16 p-4 rounded-l-full max-sm:rounded-full bg-light-white outline-none cursor-pointer text-base
-   ;
+  @apply w-full h-[48px] pl-16 p-4 rounded-xl bg-light-white outline-none cursor-text text-base;
 }
 
 .search-manufacturer__options {
- 
-  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm;
 }
 
 .search-manufacturer__option {
- 
-  @apply cursor-default select-none py-2 pl-10 pr-4;
+  @apply cursor-pointer select-none py-2 pl-10 pr-4;
 }
-.combo-options{
-  z-index: 1;
+.combo-options {
+  z-index: 50;
 }
 /* END: search manufacturer styles */
 
 /*Mushrooms*/
-.mush-image{
+.mush-image {
   margin-left: 200px;
   left: 100px;
   height: 50px;

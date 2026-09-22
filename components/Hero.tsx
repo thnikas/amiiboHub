@@ -15,13 +15,14 @@ const Hero = () => {
 
   return (
     <div className="hero">
-      <div className="flex-1 pt-36 padding-x">
+      <div className="flex-1 padding-x">
         <h1 className="hero__title">
           Discover, collect, and unlock the world of amiibos—effortlessly!
         </h1>
 
         <p className="hero__subtitle">
-          Immerse yourself in the world of amiibos with our seamless exploration and collection process.
+          Immerse yourself in the world of amiibos with our seamless exploration
+          and collection process.
         </p>
 
         <CustomButton

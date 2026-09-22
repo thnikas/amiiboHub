@@ -4,52 +4,51 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { amiiboProps } from "@/types";
-import CustomButton from "./CustomButton";
 import AmiiboDetails from "./AmiiboDetails";
 
-interface amiiboamiibodProps {
+interface AmiiboCardProps {
   amiibo: amiiboProps;
 }
 
-const amiiboamiibod = ({ amiibo }: amiiboamiibodProps) => {
+const AmiiboCard = ({ amiibo }: AmiiboCardProps) => {
   const { 
     character,
     gameSeries,
-    image, } = amiibo;
+    image,
+  } = amiibo;
 
   const [isOpen, setIsOpen] = useState(false);//if true shows card details
 
 
   return (
-    <div className="amiibo-amiibod group">
-      <div className="amiibo-amiibod__content">
-        <h2 className="amiibo-amiibod__content-title">
-        {gameSeries}: {character} 
-        </h2>
-      </div>
+    <>
+      <button
+        type="button"
+        className="amiibo-amiibod group w-full cursor-pointer text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-blue"
+        onClick={() => setIsOpen(true)}
+        aria-label={`View details for ${amiibo.name ?? character ?? "Amiibo"}`}
+      >
+        <div className="amiibo-amiibod__content">
+          <h2 className="amiibo-amiibod__content-title">
+            {gameSeries}: {character}
+          </h2>
+        </div>
 
-      
-
-      <div className='relative w-full h-40 my-3 object-contain'>
-        <Image src={image} alt='amiibo model' fill priority className='object-contain' />
-      </div> 
-
-      <div className='relative flex w-full mt-2'>
-        
-        <div className="amiibo-amiibod__btn-container">
-          <CustomButton
-            title='View More'
-            containerStyles='w-full py-[16px] rounded-full bg-primary-blue'
-            textStyles='text-white text-[14px] leading-[17px] font-bold'
-            rightIcon='/right-arrow.svg'
-            handleClick={() => setIsOpen(true)}
+        <div className="relative my-3 h-40 w-full object-contain">
+          <Image
+            src={image}
+            alt={`${amiibo.name ?? character ?? "Amiibo"} model`}
+            fill
+            priority
+            sizes='(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw'
+            className='object-contain'
           />
         </div>
-      </div>
+      </button>
 
       <AmiiboDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} amiibo={amiibo} />
-    </div>
+    </>
   );
 };
 
-export default amiiboamiibod;
+export default AmiiboCard;
