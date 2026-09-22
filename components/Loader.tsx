@@ -1,13 +1,11 @@
 "use client"
-import React,{useState,useEffect} from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { useGlobalContext } from '@/app/context'
 const Loader = () => {//custom loader that works with animations
-  const [position, setPosition] = useState(0);
   const { loader,setLoader} = useGlobalContext();
   
-  const animationVariants = {//the animation that changes the Mario position
+  const animationVariants: Variants = {//the animation that changes the Mario position
     initial: { x: "-1500%" },
     animate: { x: "-300%", transition: { duration: 5, ease: "easeOut" } },
   };

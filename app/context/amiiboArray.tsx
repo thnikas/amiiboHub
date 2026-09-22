@@ -1,27 +1,28 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, type Dispatch, type PropsWithChildren, type SetStateAction } from 'react';
+import { arrayFilter } from '@/types';
 
 interface IGlobalContextProps {
-  amiiboAr: any;
-  setAmiiboAr: (amiiboAr: any) => void;
+  amiiboAr: arrayFilter[];
+  setAmiiboAr: Dispatch<SetStateAction<arrayFilter[]>>;
   limit: number;
-  setLimit: (limit: any) => void;
+  setLimit: Dispatch<SetStateAction<number>>;
   loader:boolean,
-  setLoader:(loader: any) => void;
+  setLoader: Dispatch<SetStateAction<boolean>>;
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({//context values that used in the components
-  amiiboAr: {},
+  amiiboAr: [],
   setAmiiboAr: () => {},
-  limit: 9,
+  limit: 12,
   setLimit: () => {},
   loader:false,
   setLoader:()=>{}
 });
 
-export const AmiiboArray = (props:any) => {
-  const [amiiboAr, setAmiiboAr] = useState([]);
-  const [limit, setLimit]=useState(9)
+export const AmiiboArray = (props: PropsWithChildren) => {
+  const [amiiboAr, setAmiiboAr] = useState<arrayFilter[]>([]);
+  const [limit, setLimit]=useState(12)
   const [loader, setLoader]=useState(false)
   return (
     <GlobalContext.Provider

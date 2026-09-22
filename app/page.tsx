@@ -1,16 +1,18 @@
-import {CustomFilter, Hero, Searchbar,AmiiboCard,ShowMore} from '@/components'
+import {CustomFilter, Hero, Searchbar,ShowMore} from '@/components'
 import { fetchAmiibos } from '@/utils'
 import { HomeProps } from "@/types";
 import { types, yearsOfProduction } from "@/constants";
 import Loader from '@/components/Loader';
+import { Suspense } from 'react';
 export default async function Home({ searchParams }: HomeProps) {
+  const resolvedSearchParams = await searchParams;
   const amiibosFetch = await fetchAmiibos({//get the data from the api
-    amiiboSeries: searchParams.amiiboSeries || "",
-    character: searchParams.character,
-    gameSeries: searchParams.gameSeries || "",
-    image:searchParams.image,
-    name:searchParams.name||"",
-    type:searchParams.type||"Figure",
+    amiiboSeries: resolvedSearchParams.amiiboSeries || "",
+    character: resolvedSearchParams.character,
+    gameSeries: resolvedSearchParams.gameSeries || "",
+    image:resolvedSearchParams.image,
+    name:resolvedSearchParams.name||"",
+    type:resolvedSearchParams.type||"Figure",
    
   });
   const amiibos = amiibosFetch.amiibo
@@ -24,7 +26,9 @@ export default async function Home({ searchParams }: HomeProps) {
         <p>Explore the Amiibos you might like</p>
       </div>
       <div className='home__filters'>
-        <Searchbar/>
+        <Suspense fallback={null}>
+          <Searchbar/>
+        </Suspense>
         <div className='home__filter-container'>
             <CustomFilter title='types' options={types} array={amiibos}/>
             <CustomFilter title='year' options={yearsOfProduction} array={amiibos}/>
